@@ -13,7 +13,7 @@ app.use(cors({
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
-// 
+// get all user data
 app.get('/', async (req, res) => {
   try {
     res.send({response: 'here it is'});
