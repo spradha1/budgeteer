@@ -1,0 +1,49 @@
+.Signup, .Login {
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+.SignupCard, .LoginCard {
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  padding: 10px;
+}
+
+.Form {
+  text-align: left;
+}
+.Form input {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.Form label, .Form input, .SignupSubmit, .LoginSubmit {
+  margin-bottom: 5px;
+}
+
+.SignupSubmit, .LoginSubmit {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(1, 110, 1);
+  color: ghostwhite;
+  padding: 10px;
+  font-family: Ubuntu;
+}
+.SignupSubmit:hover, .LoginSubmit:hover {
+  cursor: pointer;
+  background: linear-gradient(rgb(2, 160, 2), rgb(1, 110, 1));
+}
+
+.Alert {
+  background-color: rgba(202, 0, 0, 0.7);
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: ghostwhite;
+  width: 100%;
+  padding: 10px;
+}
