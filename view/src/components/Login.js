@@ -16,9 +16,9 @@ export default function Login() {
         {error && <div className={styles.Alert}>{error}</div>}
         <form className={styles.Form}>
           <label htmlFor="email">Email:</label><br/>
-          <input type="text" id="email" name="email" autoComplete='off' /><br/>
+          <input type="text" id="email" name="email" autoComplete='off' required /><br/>
           <label htmlFor="password">Password:</label><br/>
-          <input type="password" id="password" name="password" /><br/>
+          <input type="password" id="password" name="password" required /><br/>
           <button disabled={loading} type="submit" className={styles.LoginSubmit}>Log In</button>
         </form>
         <div>
