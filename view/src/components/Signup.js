@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './Card.module.css';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -16,6 +16,13 @@ export default function Signup() {
   const confirmPasswordRef = useRef();
 
 
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+      setError('');
+    };
+  }, []);
+
   // handle sign up submission
   async function handleSignup (e) {
     e.preventDefault();
@@ -26,8 +33,9 @@ export default function Signup() {
     try {
       setError('');
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
-      history.push('/');
+      await signup(emailRef.current.value, passwordRef.current.value).then( () => {
+        history.push('/');
+      });
     } catch (err) {
       setError(`Sign Up failed: ${err.message}`);
     }

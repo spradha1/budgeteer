@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './Card.module.css';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -14,6 +14,13 @@ export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
 
+
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+      setError('');
+    };
+  }, []);
 
   async function handleLogin (e) {
     e.preventDefault();

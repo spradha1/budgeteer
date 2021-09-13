@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { auth } from '../firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 
 const AuthContext = React.createContext();
@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
 
   // look for user on mount or change of auth state
   useEffect ( () => {
-    const unsub = auth.onAuthStateChanged(user => {
+    const unsub = onAuthStateChanged(auth, user => {
       setCurrentUser(user);
       setLoading(false);
     });
@@ -36,8 +36,8 @@ export function AuthProvider({ children }) {
 
   async function signup (email, password) {
     return await createUserWithEmailAndPassword(auth, email, password)
-    .then(async cred => {
-      await fetch(`/addUser/${cred.user.uid}`, {
+    .then(cred => {
+      fetch(`/addUser/${cred.user.uid}`, {
         method: 'POST',
         mode: 'cors'
       }).catch(err => {
@@ -51,7 +51,7 @@ export function AuthProvider({ children }) {
   }
 
   function logout () {
-    return signOut();
+    return signOut(auth);
   }
 
 
