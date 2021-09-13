@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styles from './Card.module.css';
 import { Link, useHistory } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 
 export default function Signup() {
@@ -8,6 +9,7 @@ export default function Signup() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const { signup } = useAuth();
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -15,11 +17,8 @@ export default function Signup() {
 
 
   // handle sign up submission
-  async function handleSubmit (e) {
+  async function handleSignup (e) {
     e.preventDefault();
-    if (emailRef.current == null || passwordRef.current == null || confirmPasswordRef.current == null) {
-      return;
-    }
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
       return setError('Passwords do not match');
     }
@@ -27,7 +26,7 @@ export default function Signup() {
     try {
       setError('');
       setLoading(true);
-      
+      await signup(emailRef.current.value, passwordRef.current.value);
       history.push('/');
     } catch (err) {
       setError(`Sign Up failed: ${err.message}`);
@@ -41,9 +40,9 @@ export default function Signup() {
         <h2>Budgeteer Signup</h2>
         {error && <div className={styles.Alert}>{error}</div>}
 
-        <form className={styles.Form} onSubmit={handleSubmit}>
+        <form className={styles.Form} onSubmit={handleSignup}>
           <label htmlFor="email">Email:</label><br/>
-          <input type="email" id="email" name="email" autoComplete='off' ref={emailRef} required /><br/>
+          <input type="email" id="email" name="email" ref={emailRef} required /><br/>
           <label htmlFor="password">Password:</label><br/>
           <input type="password" id="password" name="password" ref={passwordRef} required /><br/>
           <label htmlFor="confirmPassword">Confirm password:</label><br/>
@@ -52,7 +51,7 @@ export default function Signup() {
         </form>
 
         <div>
-          Have an account? <Link to="/login" style={{ textDecoration: 'none'}}>Log In</Link>
+          Already have an account? <Link to="/login" style={{ textDecoration: 'none'}}>Log In</Link>
         </div>
       </div>
     </div>

@@ -1,11 +1,63 @@
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react';
+import { auth } from '../firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
-export default function AuthContext() {
 
-  
+const AuthContext = React.createContext();
+
+export function useAuth () {
+  return useContext(AuthContext);
+}
+
+export function AuthProvider({ children }) {
+
+  const [currentUser, setCurrentUser] = useState();
+  const [loading, setLoading] = useState(true);
+  const value = {
+    currentUser,
+    signup,
+    login,
+    logout
+  }
+
+  // look for user on mount or change of auth state
+  useEffect ( () => {
+    const unsub = auth.onAuthStateChanged(user => {
+      setCurrentUser(user);
+      setLoading(false);
+    });
+    return unsub;
+  }, []);
+
+
+
+
+  /* talk to the firebase */
+
+  async function signup (email, password) {
+    return await createUserWithEmailAndPassword(auth, email, password)
+    .then(async cred => {
+      await fetch(`/addUser/${cred.user.uid}`, {
+        method: 'POST',
+        mode: 'cors'
+      }).catch(err => {
+        console.log(`Error feching '/addUser': ${err.message}`)
+      });
+    });
+  }
+
+  function login (email, password) {
+    return signInWithEmailAndPassword(auth, email, password);
+  }
+
+  function logout () {
+    return signOut();
+  }
+
+
   return (
-    <div>
-      
-    </div>
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
   )
 }
