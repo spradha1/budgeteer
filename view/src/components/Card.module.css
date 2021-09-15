@@ -1,15 +1,27 @@
-.Signup, .Login {
+.Signup, .Login, .ForgotPass {
   width: 100%;
   height: 100%;
   max-width: 400px;
   margin: auto;
 }
 
-.SignupCard, .LoginCard {
+.Card {
   border-radius: 10px;
   background-color: white;
   color: black;
   padding: 10px;
+}
+
+.CardPrompt {
+  margin-top: 5px;
+}
+
+.CardLink {
+  text-decoration: none;
+  color: rgb(60, 89, 255);
+}
+.CardLink:visited {
+  color: rgb(60, 89, 255);
 }
 
 .Form {
@@ -25,25 +37,35 @@
   margin-bottom: 5px;
 }
 
-.SignupSubmit, .LoginSubmit {
+.CardSubmit {
   width: 100%;
   border: none;
-  border-radius: 10px;
-  background-color: rgb(1, 110, 1);
+  border-radius: 5px;
+  background-color: rgb(126, 1, 126);
   color: ghostwhite;
   padding: 10px;
   font-family: Ubuntu;
 }
-.SignupSubmit:hover, .LoginSubmit:hover {
+.CardSubmit:hover {
   cursor: pointer;
-  background: linear-gradient(rgb(2, 160, 2), rgb(1, 110, 1));
+  background: linear-gradient(rgb(156, 0, 156), rgb(83, 0, 83));
+}
+.CardSubmit:disabled {
+  background-color: grey;
+}
+
+.Alert, .Success {
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: ghostwhite;
+  width: 100%;
+  padding: 5px;
 }
 
 .Alert {
-  background-color: rgba(202, 0, 0, 0.7);
-  box-sizing: border-box;
-  border-radius: 10px;
-  color: ghostwhite;
-  width: 100%;
-  padding: 10px;
+  background-color: rgba(202, 0, 0, 0.9);
+}
+
+.Success {
+  background-color: rgba(0, 177, 0, 0.9);
 }

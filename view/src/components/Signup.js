@@ -44,7 +44,7 @@ export default function Signup() {
 
   return (
     <div className={styles.Signup}>
-      <div className={styles.SignupCard}>
+      <div className={styles.Card}>
         <h2>Budgeteer Signup</h2>
         {error && <div className={styles.Alert}>{error}</div>}
 
@@ -55,11 +55,11 @@ export default function Signup() {
           <input type="password" id="password" name="password" ref={passwordRef} required /><br/>
           <label htmlFor="confirmPassword">Confirm password:</label><br/>
           <input type="password" id="confirmPassword" name="confirmPassword" ref={confirmPasswordRef} required /><br/>
-          <button disabled={loading} type="submit" className={styles.SignupSubmit}>Sign Up</button>
+          <button disabled={loading} type="submit" className={styles.CardSubmit}>Sign Up</button>
         </form>
 
-        <div>
-          Already have an account? <Link to="/login" style={{ textDecoration: 'none'}}>Log In</Link>
+        <div className={styles.CardPrompt}>
+          Already have an account? <Link to="/login" className={styles.CardLink}>Log In</Link>
         </div>
       </div>
     </div>

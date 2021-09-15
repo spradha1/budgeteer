@@ -1,6 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { auth } from '../firebase';
-import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { 
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail
+} from 'firebase/auth';
 
 
 const AuthContext = React.createContext();
@@ -17,7 +23,8 @@ export function AuthProvider({ children }) {
     currentUser,
     signup,
     login,
-    logout
+    logout,
+    resetPass
   }
 
   // look for user on mount or change of auth state
@@ -52,6 +59,10 @@ export function AuthProvider({ children }) {
 
   function logout () {
     return signOut(auth);
+  }
+
+  function resetPass (email) {
+    return sendPasswordResetEmail(auth, email);
   }
 
 

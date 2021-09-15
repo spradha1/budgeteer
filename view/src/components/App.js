@@ -6,6 +6,7 @@ import PrivateRoute from './PrivateRoute';
 import Dash from './Dash';
 import Login from './Login';
 import Signup from './Signup';
+import ForgotPass from './ForgotPass';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <PrivateRoute exact path='/' component={Dash}></PrivateRoute>
             <Route path='/login' component={Login}></Route>
             <Route path='/signup' component={Signup}></Route>
+            <Route path='/forgotpass' component={ForgotPass}></Route>
           </Switch>
         </AuthProvider>
       </Router>

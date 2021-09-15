@@ -39,7 +39,7 @@ export default function Login() {
 
   return (
     <div className={styles.Login}>
-      <div className={styles.LoginCard}>
+      <div className={styles.Card}>
         <h2>Budgeteer Login</h2>
         {error && <div className={styles.Alert}>{error}</div>}
         <form className={styles.Form} onSubmit={handleLogin}>
@@ -47,10 +47,13 @@ export default function Login() {
           <input type="text" id="email" name="email" ref={emailRef} required /><br/>
           <label htmlFor="password">Password:</label><br/>
           <input type="password" id="password" name="password" ref={passwordRef} required /><br/>
-          <button disabled={loading} type="submit" className={styles.LoginSubmit}>Log In</button>
+          <button disabled={loading} type="submit" className={styles.CardSubmit}>Log In</button>
         </form>
-        <div>
-          Don't have an account? <Link to="/signup" style={{ textDecoration: 'none'}}>Sign up</Link>
+        <div className={styles.CardPrompt}>
+          Don't have an account? <Link to="/signup" className={styles.CardLink}>Sign up</Link>
+        </div>
+        <div className={styles.CardPrompt}>
+          <Link to="/forgotpass" className={styles.CardLink}>Forgot Password?</Link>
         </div>
       </div>
     </div>
