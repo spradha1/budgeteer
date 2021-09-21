@@ -23,10 +23,11 @@ export default function Navigator() {
 
   return (
     <div className={styles.Navbar}>
-      <div className={styles.Brand}><NavLink className={styles.InactiveLink} exact to='/'>Budgeteer</NavLink></div>
+      <div className={styles.Brand}><NavLink className={styles.BrandLink} exact to='/'>Budgeteer</NavLink></div>
       <div className={styles.NavOptions}>
-        <NavLink className={styles.InactiveLink} to='/'>Dashboard</NavLink>
-        <div className={styles.InactiveLink} onClick={handleLogout} >Log Out</div>
+        <NavLink className={styles.NavOption} activeClassName={styles.currentPage} exact to='/'>Dashboard</NavLink>
+        <NavLink className={styles.NavOption} activeClassName={styles.currentPage} to='/Profile'>Profile</NavLink>
+        <div className={styles.NavOption} onClick={handleLogout} >Log Out</div>
       </div>
     </div>
   )

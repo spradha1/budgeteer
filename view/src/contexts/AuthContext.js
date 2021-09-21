@@ -5,7 +5,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  updateEmail,
+  updatePassword
 } from 'firebase/auth';
 
 
@@ -24,7 +26,9 @@ export function AuthProvider({ children }) {
     signup,
     login,
     logout,
-    resetPass
+    resetPass,
+    updateUserEmail,
+    updateUserPassword
   }
 
   // look for user on mount or change of auth state
@@ -63,6 +67,14 @@ export function AuthProvider({ children }) {
 
   function resetPass (email) {
     return sendPasswordResetEmail(auth, email);
+  }
+
+  function updateUserEmail (email) {
+    return updateEmail(currentUser, email);
+  }
+
+  function updateUserPassword (password) {
+    return updatePassword(currentUser, password);
   }
 
 
