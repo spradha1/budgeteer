@@ -7,6 +7,7 @@
   flex-direction: row;
   justify-content: space-between;
   background-color: rgb(29, 29, 29);
+  z-index: 100;
 }
 
 .Brand, .NavOptions {
@@ -14,6 +15,11 @@
   display: flex;
   flex-direction: row;
   height: inherit;
+  background-color: inherit;
+}
+
+.BrandLink {
+  font-size: 1.2rem;
 }
 
 .NavOption, .BrandLink {
@@ -32,4 +38,87 @@
 
 .currentPage {
   box-shadow: inset 0 -5px rgb(192, 165, 12);
+}
+
+.Burger {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  top: 15px;
+  right: 10px;
+  justify-content: space-between;
+  height: 30px;
+  width: 30px;
+}
+.Burger:hover {
+  cursor: pointer;
+}
+
+.Burger span {
+  width: 100%;
+  height: 4px;
+  background-color: white;
+}
+
+
+/* Responsive Styles */
+
+@media (max-width: 500px) {
+
+  .Burger {
+    display: flex;
+  }
+  .Burger span:nth-child(2) {
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+  }
+  .Burger.openBurger span:nth-child(2) {
+    opacity: 0;
+  }
+  .Burger span:first-child {
+    transform: none;
+    transition: transform 0.3s ease-in;
+  }
+  .Burger.openBurger span:first-child {
+    transform: translateY(13px) rotateZ(45deg);
+  }
+  .Burger span:last-child{
+    transform: none;
+    transition: transform 0.3s ease-in;
+  }
+  .Burger.openBurger span:last-child {
+    transform: translateY(-13px) rotateZ(-45deg);
+  }
+
+  .Navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .NavOptions {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+  }
+  .NavOptions.openMenu {
+    pointer-events: auto;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .NavOption {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .currentPage {
+    box-shadow: inset -5px 0 rgb(192, 165, 12);
+  }
 }

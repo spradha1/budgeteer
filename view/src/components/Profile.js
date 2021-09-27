@@ -53,6 +53,7 @@ export default function Profile() {
     <div className={styles.Profile}>
       <Navigator />
       <div className={styles.Header}>Profile</div>
+      <button type='button' className={styles.EditButton} onClick={() => setEditing(!editing)}>{editing ? 'Cancel':'Edit'}</button>
       {editing ?
         <div className={styles.EditProfile}>
           {error && <div className={cardStyles.Alert}>{error}</div>}
@@ -74,7 +75,6 @@ export default function Profile() {
           </div>
         </div>
       }
-      <button type='button' className={styles.EditButton} onClick={() => setEditing(!editing)}>{editing ? 'Cancel':'Edit'}</button>
     </div>
   )
 }
