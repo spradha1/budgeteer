@@ -1,9 +1,14 @@
-.Dashboard {
+.Ledger {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 60px);
+  width: inherit;
   padding: 60px 0 0 0;
   text-align: left;
+}
+
+.LedgerContainer {
+  
 }
 
 .Header {
@@ -12,13 +17,15 @@
   padding: 10px;
 }
 
+.Expenses {
 
-/* Responsive Styles */
+}
 
-@media (max-width: 500px) {
+.Income {
 
-  .Dashboard {
-    text-align: center;
-  }
-  
+}
+
+.Expenses .Header, .Income .Header {
+  font-size: 2em;
+  text-align: center;
 }

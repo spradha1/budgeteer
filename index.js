@@ -32,3 +32,20 @@ app.post('/addUser/:uid', async (req, res, next) => {
     next(err);
   });
 });
+
+// get data of a particular user from the database
+app.get('/getUserData/:uid', async (req, res, next) => {
+  const docRef = db.collection('users').doc(req.params.uid);
+  await docRef.get()
+  .then((doc) => {
+    if (doc.exists) {
+      res.send({ data: doc.data() });
+    } else {
+      throw new Error('No data exists for current user.');
+    }
+  })
+  .catch(err => {
+    console.log("Error fetching user data: " + err.message);
+    next(err);
+  });
+});

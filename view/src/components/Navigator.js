@@ -39,7 +39,8 @@ export default function Navigator() {
       </div>
       <div className={styles.NavOptions} ref={navOptionsRef}>
         <NavLink className={styles.NavOption} activeClassName={styles.currentPage} exact to='/'>Dashboard</NavLink>
-        <NavLink className={styles.NavOption} activeClassName={styles.currentPage} to='/Profile'>Profile</NavLink>
+        <NavLink className={styles.NavOption} activeClassName={styles.currentPage} to='/ledger'>Ledger</NavLink>
+        <NavLink className={styles.NavOption} activeClassName={styles.currentPage} to='/profile'>Profile</NavLink>
         <div className={styles.NavOption} onClick={handleLogout} >Log Out</div>
       </div>
     </div>

@@ -43,7 +43,7 @@ export function AuthProvider({ children }) {
 
 
 
-  /* talk to the firebase */
+  /* talk to the database */
 
   async function signup (email, password) {
     return await createUserWithEmailAndPassword(auth, email, password)
@@ -52,7 +52,7 @@ export function AuthProvider({ children }) {
         method: 'POST',
         mode: 'cors'
       }).catch(err => {
-        console.log(`Error feching '/addUser': ${err.message}`)
+        console.log(`Error requesting '/addUser': ${err.message}`)
       });
     });
   }
