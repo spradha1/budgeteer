@@ -1,6 +1,6 @@
 import React from 'react'
 import Navigator from './Navigator';
-import styles from './Dash.module.css';
+import styles from '../styles/Dash.module.scss';
 
 
 export default function Dash() {

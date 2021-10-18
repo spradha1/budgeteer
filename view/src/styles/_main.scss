@@ -1,0 +1,74 @@
+// typography
+
+$font1: Ubuntu;
+$font2: sans-serif;
+$font3: monospace;
+
+
+// color
+
+$light1: white;
+$light2: ghostwhite;
+
+$dark1: black;
+$dark2: rgb(10, 10, 10);
+$dark3: rgb(29, 29, 29);
+
+$link1: rgb(60, 89, 255);
+$link2: rgb(35, 68, 255);
+
+$color1: rgb(126, 1, 126);
+$color1-dark: rgb(63, 0, 63);
+$color2: rgb(228, 199, 38);
+$color2-dark: rgb(192, 165, 12);
+
+$inactive: grey;
+$error: rgb(202, 0, 0);
+$success: rgb(0, 177, 0);
+
+
+
+// design
+
+// occupying parent div with elements centered wrapping vertically
+@mixin fill-center-col ($h: inherit, $w: inherit, $j: center, $a: center){
+  display: flex;
+  flex-direction: column;
+  justify-content: $j;
+  align-items: $a;
+  height: $h;
+  width: $w;
+}
+
+// primary button styles
+@mixin button1 {
+  border: none;
+  border-radius: 5px;
+  background-color: $color1;
+  color: $light1;
+  font-family: $font3;
+  text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+    background: linear-gradient($color1, $color1-dark);
+  }
+
+  &:disabled {
+    background-color: $inactive;
+  }
+}
+
+// headline
+@mixin headline {
+  font-weight: bold;
+  font-size: 3em;
+  padding: 10px;
+}
+
+// sub headline
+@mixin subheadline {
+  font-size: 2em;
+  text-align: center;
+  padding: 10px;
+}

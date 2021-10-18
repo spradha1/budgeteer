@@ -1,15 +1,14 @@
+@import 'main';
+
+
 .Dashboard {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 60px);
+  @include fill-center-col($h: calc(100vh - 60px), $j: unset, $a: unset);
   padding: 60px 0 0 0;
   text-align: left;
 }
 
 .Header {
-  font-weight: bold;
-  font-size: 3em;
-  padding: 10px;
+ @include headline;
 }
 
 

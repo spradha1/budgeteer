@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import Navigator from './Navigator';
-import styles from './Profile.module.css';
-import cardStyles from './Card.module.css';
+import styles from '../styles/Profile.module.scss';
+import cardStyles from '../styles/Card.module.scss';
 
 
 export default function Profile() {

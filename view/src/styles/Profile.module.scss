@@ -1,0 +1,60 @@
+@import 'main';
+
+
+.Profile {
+  @include fill-center-col($h: auto, $j: flex-start, $a: unset);
+  position: relative;
+  padding: 60px 0 0 0;
+  text-align: left;
+}
+
+.Header {
+  @include headline;
+}
+
+.ProfileSub {
+  display: table;
+  width: calc(100% - 50px);
+  margin: 10px auto;
+}
+
+.ProfileRow {
+  display: table-row;
+
+  div {
+    width: auto;
+    display: table-cell;
+  }
+  
+  div:nth-child(1){
+    font-weight: bolder;
+  }
+}
+
+.EditButton {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  max-width: 100px;
+  padding: 10px;
+  font-size: 15px;
+  z-index: 1;
+  @include button1;
+}
+
+.EditProfile {
+  width: calc(100% - 20px);
+  max-width: 400px;
+  margin: 10px auto;
+}
+
+
+/* Responsive Styles */
+
+@media (max-width: 500px) {
+
+  .ProfileSub {
+    width: calc(100% - 30px);
+  }
+
+}

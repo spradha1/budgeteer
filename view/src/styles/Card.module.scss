@@ -1,0 +1,83 @@
+// styles for card form
+
+@import 'main';
+
+
+.Signup, .Login, .ForgotPass {
+  @include fill-center-col;
+}
+
+.Card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  background-color: $light1;
+  color: $dark1;
+  padding: 10px;
+}
+
+.CardPrompt {
+  margin-top: 5px;
+}
+
+.CardLink {
+  text-decoration: none;
+  color: $link1;
+
+  &:visited {
+    color: $link2;
+  }
+}
+
+.Form {
+  text-align: left;
+
+  input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    font-family: $font2;
+  }
+
+  label, input {
+    margin-bottom: 5px;
+  }
+}
+
+
+// submit button
+.CardSubmit {
+  @include button1;
+  width: 100%; 
+  padding: 10px;
+}
+
+
+// submission styles
+.Alert, .Success {
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: $light1;
+  width: 100%;
+  padding: 5px;
+}
+
+.Alert {
+  margin-bottom: 5px;
+  background-color: $error;
+}
+
+.Success {
+  background-color: $success;
+}
+
+
+/* Responsive Styles */
+
+@media (max-width: 425px) {
+
+  .Card {
+    width: calc(100% - 20px);
+    padding: 10px 5px;
+  }
+}

@@ -1,0 +1,25 @@
+@import 'main';
+
+
+.Ledger {
+  @include fill-center-col($h: calc(100vh - 60px), $j: flex-start, $a: unset);
+  padding: 60px 0 0 0;
+  text-align: left;
+}
+
+.LedgerContainer {
+  @include fill-center-col($h: auto, $j: flex-start);
+}
+
+.Header {
+  @include headline;
+}
+
+.Expenses, .Income {
+  width: 100%;
+  text-align: center;
+
+  .Header {
+    @include subheadline;
+  }
+}

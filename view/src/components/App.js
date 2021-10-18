@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './App.module.css';
+import styles from '../styles/App.module.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AuthProvider } from '../contexts/AuthContext';
 import PrivateRoute from './PrivateRoute';

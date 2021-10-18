@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useHistory, NavLink } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import styles from './Navigator.module.css';
+import styles from '../styles/Navigator.module.scss';
 
 
 export default function Navigator() {

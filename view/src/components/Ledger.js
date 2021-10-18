@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserData } from '../features/tracker/trackerSlice';
 import Navigator from './Navigator';
 import Loader from './Loader';
-import styles from './Ledger.module.css';
+import styles from '../styles/Ledger.module.scss';
 
 
 export default function Ledger() {

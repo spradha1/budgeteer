@@ -1,0 +1,63 @@
+@import 'main';
+
+
+.Loader {
+  @include fill-center-col($h: 100%);
+  position: relative;
+  flex-grow: 1;
+}
+
+.LoaderBox {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  width: 100px;
+
+  span {
+    width: 40px;
+    height: 100%;
+    border-radius: 100px;
+  }
+
+  span:first-child {
+    @extend %back-and-forth;
+    background-color: $color1;
+    animation: oscillate_right 1s ease-in-out 0s;
+    
+  }
+
+  span:last-child {
+    @extend %back-and-forth;
+    background-color: $color2;
+    animation: oscillate_left 1s ease-in-out 0s;
+  }
+}
+
+
+/* animation styles */
+
+// animation pattern
+%back-and-forth {
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes oscillate_right {
+
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(60px);
+  }
+}
+
+@keyframes oscillate_left {
+
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-60px);
+  }
+}

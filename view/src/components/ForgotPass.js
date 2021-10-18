@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import styles from './Card.module.css';
+import styles from '../styles/Card.module.scss';
 
 
 export default function ForgotPass() {
