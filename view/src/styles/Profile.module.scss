@@ -2,7 +2,7 @@
 
 
 .Profile {
-  @include fill-center-col($h: auto, $j: flex-start, $a: unset);
+  @include fill-center-col($h: calc(100vh - 60px), $j: flex-start, $a: unset);
   position: relative;
   padding: 60px 0 0 0;
   text-align: left;

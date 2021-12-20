@@ -31,7 +31,9 @@ export default function Login() {
       await login(emailRef.current.value, passwordRef.current.value);
       history.push('/');
     } catch (err) {
-      setError(`Log In failed: ${err.message}`);
+      console.log(err);
+      const errMsg = err.message.split(':');
+      setError(`Log In failed: ${errMsg[errMsg.length - 1]}`);
     }
     setLoading(false);
   }

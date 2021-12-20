@@ -1,6 +1,9 @@
-import React, { useState, useRef } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import React, { useState, useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import Navigator from './Navigator';
+import { useAuth } from '../contexts/AuthContext';
+import { getUserData } from '../features/tracker/trackerSlice';
 import styles from '../styles/Profile.module.scss';
 import cardStyles from '../styles/Card.module.scss';
 
@@ -11,10 +14,21 @@ export default function Profile() {
   const [editing, setEditing] = useState(false);
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState('');
+  const dispatch = useDispatch();
 
+  const status = useSelector(state => state.tracker.status);
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
+
+
+  // async dispatch to fetch data for every edit made
+  useEffect(() => {
+    console.log(status);
+    if (status === 'idle') {
+      dispatch(getUserData(currentUser.uid));
+    }
+  }, [status, dispatch, currentUser]);
 
 
   // handle update profile
@@ -53,7 +67,16 @@ export default function Profile() {
     <div className={styles.Profile}>
       <Navigator />
       <div className={styles.Header}>Profile</div>
-      <button type='button' className={styles.EditButton} onClick={() => setEditing(!editing)}>{editing ? 'Cancel':'Edit'}</button>
+      <button
+        className={styles.EditButton}
+        onClick={() => {
+          setEditing(!editing);
+          setUpdating(false);
+        }}
+      >
+        {editing ? 'Cancel':'Edit'}
+      </button>
+
       {editing ?
         <div className={styles.EditProfile}>
           {error && <div className={cardStyles.Alert}>{error}</div>}

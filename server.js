@@ -1,17 +1,19 @@
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
 const app = express();
-
-const port = process.env.PORT || 5000;
 
 // cors policy
 app.use(cors({
   origin: "*",
 }));
+// parse JSON bodies
+app.use(express.json());
+// port
+const port = process.env.PORT || 5000;
 
 // firebase app
-const dotenv = require('dotenv');
-dotenv.config();
 const firebase_admin = require('firebase-admin');
 firebase_admin.initializeApp({
   credential: firebase_admin.credential.cert(require(process.env.APP_CREDENTIALS))

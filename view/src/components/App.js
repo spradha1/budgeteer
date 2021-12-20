@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from '../styles/App.module.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import { AuthProvider } from '../contexts/AuthContext';
+
 import PrivateRoute from './PrivateRoute';
 import Dash from './Dash';
 import Ledger from './Ledger';
@@ -9,6 +10,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Profile from './Profile';
 import ForgotPass from './ForgotPass';
+import styles from '../styles/App.module.scss';
 
 
 function App() {

@@ -12,7 +12,7 @@
   max-width: 400px;
   border-radius: 10px;
   background-color: $light1;
-  color: $dark1;
+  color: $black1;
   padding: 10px;
 }
 
@@ -32,14 +32,14 @@
 .Form {
   text-align: left;
 
-  input {
+  input, select {
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
     font-family: $font2;
   }
 
-  label, input {
+  label, input, select {
     margin-bottom: 5px;
   }
 }

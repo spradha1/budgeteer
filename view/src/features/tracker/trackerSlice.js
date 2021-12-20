@@ -40,5 +40,4 @@ export const trackerSlice = createSlice({
   }
 });
 
-
 export default trackerSlice.reducer;

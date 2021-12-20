@@ -37,7 +37,9 @@ export default function Signup() {
         history.push('/');
       });
     } catch (err) {
-      setError(`Sign Up failed: ${err.message}`);
+      console.log(err);
+      const errMsg = err.message.split(':');
+      setError(`Sign Up failed: ${errMsg[errMsg.length - 1]}`);
     }
     setLoading(false);
   }

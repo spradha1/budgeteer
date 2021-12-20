@@ -18,8 +18,26 @@
 .Expenses, .Income {
   width: 100%;
   text-align: center;
+  margin: 20px auto;
 
   .Header {
     @include subheadline;
+  }
+  .Row {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    justify-content: space-around;
+    &.MonthLine {
+      margin: 20px auto 10px;
+    }
+    .Key {
+      width: 100px;
+      text-align: left;
+    }
+    .Val {
+      width: 50px;
+      text-align: right;
+    }
   }
 }

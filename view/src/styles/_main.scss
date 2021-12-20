@@ -10,9 +10,9 @@ $font3: monospace;
 $light1: white;
 $light2: ghostwhite;
 
-$dark1: black;
-$dark2: rgb(10, 10, 10);
-$dark3: rgb(29, 29, 29);
+$black1: black;
+$black2: rgb(20, 20, 20);
+$black3: rgb(37, 37, 37);
 
 $link1: rgb(60, 89, 255);
 $link2: rgb(35, 68, 255);
@@ -21,11 +21,16 @@ $color1: rgb(126, 1, 126);
 $color1-dark: rgb(63, 0, 63);
 $color2: rgb(228, 199, 38);
 $color2-dark: rgb(192, 165, 12);
+$color3: #654321;
+$color3-dark: #362411;
+$color4: navy;
+$color4-dark: rgb(0, 0, 68);
+$color5: #800020;
+$color5-dark: #4e0114;
 
 $inactive: grey;
 $error: rgb(202, 0, 0);
 $success: rgb(0, 177, 0);
-
 
 
 // design
@@ -56,6 +61,10 @@ $success: rgb(0, 177, 0);
 
   &:disabled {
     background-color: $inactive;
+    &:hover {
+      cursor: auto;
+      background: $inactive;
+    }
   }
 }
 

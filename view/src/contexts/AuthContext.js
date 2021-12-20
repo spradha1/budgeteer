@@ -28,8 +28,9 @@ export function AuthProvider({ children }) {
     logout,
     resetPass,
     updateUserEmail,
-    updateUserPassword
-  }
+    updateUserPassword,
+  };
+
 
   // look for user on mount or change of auth state
   useEffect ( () => {
@@ -39,7 +40,6 @@ export function AuthProvider({ children }) {
     });
     return unsub;
   }, []);
-
 
 
 
