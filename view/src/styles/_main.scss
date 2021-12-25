@@ -33,10 +33,16 @@ $error: rgb(202, 0, 0);
 $success: rgb(0, 177, 0);
 
 
+// sizes
+
+$navbarHeight: 60px;
+
+
+
 // design
 
 // occupying parent div with elements centered wrapping vertically
-@mixin fill-center-col ($h: inherit, $w: inherit, $j: center, $a: center){
+@mixin fill-center-col ($h: 100%, $w: 100%, $j: center, $a: center){
   display: flex;
   flex-direction: column;
   justify-content: $j;

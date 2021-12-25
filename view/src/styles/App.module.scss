@@ -4,18 +4,29 @@
 body, html {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  background-color: $black1;
+  &::-webkit-scrollbar {
+    width: .5em;
+    &-thumb {
+      background: rgba(250, 250, 250, 0.25);
+      border-radius: .5em;
+      &:hover {
+        background: rgba(250, 250, 250, 0.75);
+      }
+    }
+    &-track-piece:start {
+      margin-top: $navbarHeight;
+    }
+  }
 }
 
 .App {
   display: block;
   padding: 0;
   margin: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   text-align: center;
-  background-color: $black1;
   color: $light2;
   font-family: $font1;
 }

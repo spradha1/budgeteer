@@ -2,13 +2,14 @@
 
 
 .Ledger {
-  @include fill-center-col($h: calc(100vh - 60px), $j: flex-start, $a: unset);
-  padding: 60px 0 0 0;
+  @include fill-center-col;
+  margin-top: $navbarHeight;
   text-align: left;
 }
 
 .LedgerContainer {
-  @include fill-center-col($h: auto, $j: flex-start);
+  @include fill-center-col($j: flex-start);
+  position: relative;
 }
 
 .Header {
@@ -40,4 +41,37 @@
       text-align: right;
     }
   }
+}
+
+.AddDialog {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+  .AddHeader {
+    @include subheadline;
+    text-align: center;
+  }
+  .AddField {
+    width: 100%;
+    display: flex;
+    margin-bottom: 1em;
+    text-align: right;
+    label {
+      width: 45%;
+      padding: 0 10px;
+    }
+    input {
+      width: 55%;
+      max-width: 150px;
+      margin: 0 10px;
+    }
+  }
+}
+
+.Button1 {
+  @include button1;
+  padding: 10px;
+  margin: 10px;
 }

@@ -51,3 +51,15 @@ app.get('/getUserData/:uid', async (req, res, next) => {
     next(err);
   });
 });
+
+// add expense row to database
+app.post('/addExpense/:uid', async(req, res, next) => {
+  return db.collection('users').doc(req.params.uid).set({
+    expenses: req.body.expensesData
+  },
+  { merge: true })
+  .catch(err => {
+    console.log("Error adding expense to database: " + err.message);
+    next(err);
+  });
+});

@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 60px;
+  height: $navbarHeight;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -22,7 +22,7 @@
 }
 
 .NavOption, .BrandLink {
-  @include fill-center-col($w: auto);
+  @include fill-center-col($h: inherit, $w: auto);
   padding: 0 10px;
   text-decoration: none;
   color: $light2;
@@ -114,7 +114,7 @@
     width: 100%;
     height: auto;
     pointer-events: none;
-    transform: translateY(-20px);
+    transform: translateY(-$navbarHeight);
     opacity: 0;
     transition: opacity 0.3s ease-in, transform 0.3s ease-in;
 
