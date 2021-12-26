@@ -4,16 +4,16 @@
 .Ledger {
   @include fill-center-col;
   margin-top: $navbarHeight;
-  text-align: left;
-}
-
-.LedgerContainer {
-  @include fill-center-col($j: flex-start);
+  text-align: center;
   position: relative;
 }
 
 .Header {
   @include headline;
+}
+
+.LedgerContainer {
+  @include fill-center-col($j: flex-start);
 }
 
 .Expenses, .Income {
@@ -53,19 +53,29 @@
     @include subheadline;
     text-align: center;
   }
-  .AddField {
-    width: 100%;
+  .Alert {
+    width: fit-content;
+    margin: 1em auto;
+  }
+  .Form {
     display: flex;
-    margin-bottom: 1em;
-    text-align: right;
-    label {
-      width: 45%;
-      padding: 0 10px;
-    }
-    input {
-      width: 55%;
-      max-width: 150px;
-      margin: 0 10px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    .AddField {
+      width: 100%;
+      display: flex;
+      margin-bottom: 1em;
+      text-align: right;
+      label {
+        width: 45%;
+        padding: 0 10px;
+      }
+      input {
+        width: 55%;
+        max-width: 150px;
+        margin: 0 10px;
+      }
     }
   }
 }
@@ -74,4 +84,21 @@
   @include button1;
   padding: 10px;
   margin: 10px;
+
+  &.CancelButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+
+/* Responsive Styles */
+
+@media (max-width: $sm) {
+
+  .Header {
+    align-self: flex-start;
+  }
+
 }

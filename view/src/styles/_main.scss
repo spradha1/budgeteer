@@ -37,6 +37,9 @@ $success: rgb(0, 177, 0);
 
 $navbarHeight: 60px;
 
+// breakpoints
+
+$sm: 500px;
 
 
 // design
@@ -68,7 +71,7 @@ $navbarHeight: 60px;
   &:disabled {
     background-color: $inactive;
     &:hover {
-      cursor: auto;
+      cursor: wait;
       background: $inactive;
     }
   }

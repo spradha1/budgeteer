@@ -51,7 +51,7 @@
 
 /* Responsive Styles */
 
-@media (max-width: 500px) {
+@media (max-width: $sm) {
 
   .ProfileSub {
     width: calc(100% - 30px);

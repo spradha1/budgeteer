@@ -5,7 +5,7 @@
 */
 
 .Loader {
-  @include fill-center-col($h: 100%);
+  @include fill-center-col($h: 50vh);
   position: relative;
   flex-grow: 1;
 
