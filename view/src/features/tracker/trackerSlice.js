@@ -17,8 +17,10 @@ export const trackerSlice = createSlice({
 
   name: 'tracker',
   initialState: {
-    expenses: [],
-    income: [],
+    expenses: {},
+    expensesOrder: [],
+    income: {},
+    incomeOrder: [],
     status: 'idle'
   },
   reducers: {
@@ -32,7 +34,9 @@ export const trackerSlice = createSlice({
       .addCase(getUserData.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.expenses = action.payload.data.expenses;
+        state.expensesOrder = action.payload.data.expensesOrder;
         state.income = action.payload.data.income;
+        state.incomeOrder = action.payload.data.incomeOrder;
       })
       .addCase(getUserData.rejected, (state, action) => {
         state.status = 'failed';

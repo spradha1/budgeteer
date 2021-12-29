@@ -15,7 +15,9 @@ export default function Ledger() {
   const dispatch = useDispatch();
   
   const expenses = useSelector(state => state.tracker.expenses);
+  const expensesOrder = useSelector(state => state.tracker.expensesOrder);
   const income = useSelector(state => state.tracker.income);
+  const incomeOrder = useSelector(state => state.tracker.incomeOrder);
   const status = useSelector(state => state.tracker.status);
   const [error, setError] = useState('');
   const [adding, setAdding] = useState(false);
@@ -46,37 +48,41 @@ export default function Ledger() {
     setError('');
     setUpdating(true);
     if (!validateAddForm()) {
+      setUpdating(false);
       return;
     }
 
     // merge with new data
-    var oldData = {};
-    if (addType === "Expense") {
-      oldData = Object.assign(expenses);
+    var oldRow = Object.assign(expenses);
+    var oldOrder = expensesOrder;
+    if (addType !== "Expense") {
+      oldRow = Object.assign(income);
+      oldOrder = incomeOrder;
     }
-    else {
-      oldData = Object.assign(income);
-    }
-    const newData = {
-      ...oldData,
+    const newRow = {
+      ...oldRow,
       [categoryRef.current.value]: addRefs.map(v => parseFloat(v.current.value || "0"))
     };
+    var newOrder = oldOrder.slice(0);
+    newOrder.push(categoryRef.current.value);
+
+    // request to server
     fetch(`/add${addType}/${currentUser.uid}`, {
       method: 'PUT',
       mode: 'cors',
-      body: JSON.stringify(newData),
+      body: JSON.stringify({row: newRow, order: newOrder}),
       headers: { 'Content-type': 'application/json' }
     })
     .then(res => {
       console.log(res);
       alert(`${addType} data successfully added.`);
       setAdding(false);
+      setUpdating(false);
     })
     .catch(err => {
       setError(`${addType} data failed to add: ${err.message}`);
     })
     .finally(() => {
-      setUpdating(false);
       dispatch(getUserData(currentUser.uid));
     })
   }
@@ -86,6 +92,14 @@ export default function Ledger() {
     let category = categoryRef.current.value;
     if (!category) {
       setError("Category can't be blank");
+      return false;
+    }
+    if (addType === "Expense" && expenses.hasOwnProperty(category)) {
+      setError(`Expense category "${category}" already present`);
+      return false;
+    }
+    if (addType === "Income" && income.hasOwnProperty(category)) {
+      setError(`Income category "${category}" already present`);
       return false;
     }
     return true;
@@ -116,7 +130,9 @@ export default function Ledger() {
   
   var expensesHTML = [];
   var incomeHTML = [];
-  for (const [key, value] of Object.entries(expenses)) {
+  for (let a=0; a<expensesOrder.length; a++) {
+    const key = expensesOrder[a]
+    const value = expenses[key]
     expensesHTML.push(
       <div className={styles.Row} key={expensesHTML.length}>
         <div className={styles.Key}>{key}</div>
@@ -128,7 +144,9 @@ export default function Ledger() {
       </div>
     );
   }
-  for (const [key, value] of Object.entries(income)) {
+  for (let b=0; b<incomeOrder.length; b++) {
+    const key = incomeOrder[b]
+    const value = income[key]
     incomeHTML.push(
       <div className={styles.Row} key={incomeHTML.length}>
         <div className={styles.Key}>{key}</div>

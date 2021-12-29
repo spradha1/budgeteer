@@ -28,7 +28,9 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.post('/addUser/:uid', async (req, res, next) => {
   db.collection('users').doc(req.params.uid).set({
     expenses: {},
-    income: {}
+    expensesOrder: [],
+    income: {},
+    incomeOrder: []
   }).catch(err => {
     console.log("Error adding user to database: " + err.message);
     next(err);
@@ -54,9 +56,10 @@ app.get('/getUserData/:uid', async (req, res, next) => {
 
 // add new expense field to database
 app.put('/addExpense/:uid', async(req, res, next) => {
-  db.collection('users').doc(req.params.uid).set({
-    expenses: req.body
-  },{ merge: true })
+  db.collection('users').doc(req.params.uid).update({
+    expenses: req.body.row,
+    expensesOrder: req.body.order
+  })
   .then(() => {
     res.status(200).send("New expense successfully added.");
   })
@@ -68,9 +71,10 @@ app.put('/addExpense/:uid', async(req, res, next) => {
 
 // add new expense field to database
 app.put('/addIncome/:uid', async(req, res, next) => {
-  db.collection('users').doc(req.params.uid).set({
-    income: req.body
-  },{ merge: true })
+  db.collection('users').doc(req.params.uid).update({
+    income: req.body.row,
+    incomeOrder: req.body.order
+  })
   .then(() => {
     res.status(200).send("New income successfully added.");
   })
