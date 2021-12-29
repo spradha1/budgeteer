@@ -26,7 +26,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // add user to database
 app.post('/addUser/:uid', async (req, res, next) => {
-  return db.collection('users').doc(req.params.uid).set({
+  db.collection('users').doc(req.params.uid).set({
     expenses: {},
     income: {}
   }).catch(err => {
@@ -53,12 +53,29 @@ app.get('/getUserData/:uid', async (req, res, next) => {
 });
 
 // add new expense field to database
-app.post('/addExpense/:uid', async(req, res, next) => {
-  return db.collection('users').doc(req.params.uid).set({
-    expenses: req.body.expenseData
+app.put('/addExpense/:uid', async(req, res, next) => {
+  db.collection('users').doc(req.params.uid).set({
+    expenses: req.body
   },{ merge: true })
+  .then(() => {
+    res.status(200).send("New expense successfully added.");
+  })
   .catch(err => {
     console.log("Error adding expense to database: " + err.message);
+    next(err);
+  });
+});
+
+// add new expense field to database
+app.put('/addIncome/:uid', async(req, res, next) => {
+  db.collection('users').doc(req.params.uid).set({
+    income: req.body
+  },{ merge: true })
+  .then(() => {
+    res.status(200).send("New income successfully added.");
+  })
+  .catch(err => {
+    console.log("Error adding income to database: " + err.message);
     next(err);
   });
 });

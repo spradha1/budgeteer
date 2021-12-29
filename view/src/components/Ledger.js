@@ -15,11 +15,11 @@ export default function Ledger() {
   const dispatch = useDispatch();
   
   const expenses = useSelector(state => state.tracker.expenses);
-  // const income = useSelector(state => state.tracker.income);
+  const income = useSelector(state => state.tracker.income);
   const status = useSelector(state => state.tracker.status);
   const [error, setError] = useState('');
   const [adding, setAdding] = useState(false);
-  const [addType, setAddType] = useState('Expense');
+  const [addType, setAddType] = useState("Expense");
   const [updating, setUpdating] = useState(false);
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -32,7 +32,7 @@ export default function Ledger() {
     if (status === 'idle') {
       dispatch(getUserData(currentUser.uid));
     }
-  }, [status, dispatch, currentUser, addRefs]);
+  }, [status, dispatch, currentUser]);
 
 
 
@@ -49,26 +49,36 @@ export default function Ledger() {
       return;
     }
 
-    // const expenseData = Object.assign(expenses, newRow);
-
-    // const addPromise = fetch(`/addExpense/${currentUser.uid}`, {
-    //   method: 'PUT',
-    //   mode: 'cors',
-    //   body: JSON.stringify(expenseData),
-    //   headers: { 'Content-type': 'application/json' }
-    // }).catch(err => {
-    //   console.log(`Error requesting '/addExpense': ${err.message}`)
-    // });
-
-    // addPromise.then(() => {
-    //   setUpdating(false);
-    // })
-    // .catch((err) => {
-    //   setError(`Failed to add new ${rowType} data: ${err.message}`);
-    // })
-    // .finally(() => {
-    //   setAdding(false);
-    // })
+    // merge with new data
+    var oldData = {};
+    if (addType === "Expense") {
+      oldData = Object.assign(expenses);
+    }
+    else {
+      oldData = Object.assign(income);
+    }
+    const newData = {
+      ...oldData,
+      [categoryRef.current.value]: addRefs.map(v => parseFloat(v.current.value || "0"))
+    };
+    fetch(`/add${addType}/${currentUser.uid}`, {
+      method: 'PUT',
+      mode: 'cors',
+      body: JSON.stringify(newData),
+      headers: { 'Content-type': 'application/json' }
+    })
+    .then(res => {
+      console.log(res);
+      alert(`${addType} data successfully added.`);
+      setAdding(false);
+    })
+    .catch(err => {
+      setError(`${addType} data failed to add: ${err.message}`);
+    })
+    .finally(() => {
+      setUpdating(false);
+      dispatch(getUserData(currentUser.uid));
+    })
   }
 
   // validate add form input
@@ -105,9 +115,22 @@ export default function Ledger() {
   );
   
   var expensesHTML = [];
+  var incomeHTML = [];
   for (const [key, value] of Object.entries(expenses)) {
     expensesHTML.push(
       <div className={styles.Row} key={expensesHTML.length}>
+        <div className={styles.Key}>{key}</div>
+        {value.map((ele, idx) => {
+          return (
+            <div key={idx} className={styles.Val}>{ele}</div>
+          )
+        })}
+      </div>
+    );
+  }
+  for (const [key, value] of Object.entries(income)) {
+    incomeHTML.push(
+      <div className={styles.Row} key={incomeHTML.length}>
         <div className={styles.Key}>{key}</div>
         {value.map((ele, idx) => {
           return (
@@ -130,7 +153,7 @@ export default function Ledger() {
     addFormHTML.push(
       <div className={styles.AddField} key={i}>
         <label htmlFor={i}>{months[i]}:</label>
-        <input type="number" id={i} name={i} ref={currentRef} defaultValue="0"/><br/>
+        <input type="number" step="0.01" id={i} name={i} ref={currentRef} defaultValue="0"/><br/>
       </div>
     );
   }
@@ -149,7 +172,7 @@ export default function Ledger() {
               {expensesHTML.map(val => val)}
               <button
                 className={styles.Button1}
-                onClick={() => openAddDialog('Expense')}
+                onClick={() => openAddDialog("Expense")}
               >
                 Add category
               </button>
@@ -159,6 +182,13 @@ export default function Ledger() {
             <div className={styles.Income}>
               <div className={styles.Header}>Income</div>
               {monthLine}
+              {incomeHTML.map(val => val)}
+              <button
+                className={styles.Button1}
+                onClick={() => openAddDialog("Income")}
+              >
+                Add category
+              </button>
             </div>
           }
           {adding &&
